@@ -49,11 +49,11 @@ The python script generates raw logs.
 # Limitations
 
   Docker configurations were used to setup ELK, Zookeeper and Kafka due to the large amounts of RAM and CPU consumed by the resources.
-  The metrics such as LAG values from the kafka consumer group may vary since it is highly dependent on the hardware it is run on. 
+  The metrics such as LAG values may vary since it is highly dependent on the hardware that the pipeline is executed on.
 
 # Future Work
   
-  The pipeline may be deployed using a cloud service like AWS MSK and integrated with the Services platform. 
+  The pipeline may be deployed in the future using a cloud service like AWS MSK and may be integrated with the Services platform. 
 
 # Author
   - Shriyans Sharma
