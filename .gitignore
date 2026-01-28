@@ -1,0 +1,12 @@
+.env
+
+elasticsearch/data/
+logstash/data/
+filebeat/data/
+kafka/data/
+zookeeper/data/
+
+logs/*.log
+
+__pycache__/
+*.py[cod]

@@ -1,0 +1,60 @@
+  services:
+    zookeeper:
+      image: confluentinc/cp-zookeeper:7.5.3
+      environment:
+        ZOOKEEPER_CLIENT_PORT: 2181
+        ZOOKEEPER_TICK_TIME: 2000
+      ports:
+        - "2181:2181"
+
+    kafka:
+      image: confluentinc/cp-kafka:7.5.3
+      depends_on:
+        - zookeeper
+      ports:
+        - "9092:9092"
+      environment:
+        KAFKA_BROKER_ID: 1
+        KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+        
+        KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+        KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+
+        KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+        KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+    filebeat:
+      image: docker.elastic.co/beats/filebeat:8.12.0
+      user: root
+      depends_on:
+        - kafka
+      volumes:
+        - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
+        - ./logs:/usr/share/filebeat/logs
+        - ./filebeat/data:/usr/share/filebeat/data
+      command: ["--strict.perms=false"]
+
+    elasticsearch:
+      image: elasticsearch:8.12.0
+      environment:
+        - discovery.type=single-node
+        - xpack.security.enabled=false
+        - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      ports:
+        - "9200:9200"
+
+    kibana:
+      image: kibana:8.12.0
+      ports:
+        - "5601:5601"
+      depends_on:
+        - elasticsearch
+
+    logstash:
+      image: docker.elastic.co/logstash/logstash:8.12.0
+      env_file: .env
+      volumes:
+        - ./logstash:/usr/share/logstash/pipeline
+      depends_on:
+        - kafka
+        - elasticsearch
