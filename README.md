@@ -7,11 +7,11 @@ Simulated logs of error or critical severity are sent to LogTail for monitoring 
 # Pipeline Methodology
 
 The python script generates raw logs. 
-Filebeat watches the files and immediately ships them to Kafka. 
-Kafka acts as a buffer, decoupling the ingestion from the processsing layer if ElasticSearch or Logstash experiences downtime.
-Logstash utilizes Grok filters to parse unstructured strings, Throttle to manage alert volume, and Date for temporal normalization.
-Parsed data is indexed in ElasticSearch and routed to LogTail for real time alerting and monitoring. 
-Kibana provides an overview of the pipeline performance using dashboards.
+  - Filebeat watches the files and immediately ships them to Kafka. 
+  - Kafka acts as a buffer, decoupling the ingestion from the processsing layer if ElasticSearch or Logstash experiences downtime.
+  - Logstash utilizes Grok filters to parse unstructured strings, Throttle to manage alert volume, and Date for temporal normalization.
+  - Parsed data is indexed in ElasticSearch and routed to LogTail for real time alerting and monitoring. 
+  - Kibana provides an overview of the pipeline performance using dashboards.
 
 # Performance metrics
   - The LAG from kafka consumer group is ~ 0 during the light load test
