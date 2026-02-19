@@ -25,6 +25,3 @@ zookeeper/data/
 *.tar
 *.gz
 
-# Logs
-logs/*.log
-*.log
