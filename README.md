@@ -1,6 +1,6 @@
 # Distributed Logs Aggregation Pipeline
 
-This is a Logs Aggregation pipeline made using an ELK i.e. ElasticSearch, Logstash, Kafka, and Kibana infrastructure along with zookeeper and kafka. 
+This is a Logs Aggregation pipeline made using an ELK i.e. ElasticSearch, Logstash, Kafka, and Kibana infrastructure along with zookeeper. 
 The pipeline handles and filters logs produced from multiple simulated microservices from a website. 
 Simulated logs of error or critical severity are sent to LogTail for monitoring and alerting. 
 
