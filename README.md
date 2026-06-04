@@ -53,7 +53,7 @@ The python script generates raw logs.
 
 # Future Work
   
-  The pipeline may be deployed in the future using a cloud service like AWS MSK and may be integrated with the Services platform. 
+  The pipeline may be deployed in the future using a cloud service like AWS MSK and may be integrated with the ChoreSync platform for system health monitoring
 
 # Author
   - Shriyans Sharma
